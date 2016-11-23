@@ -1,0 +1,22 @@
+{
+  "name": "websocket-listener",
+  "version": "1.0.0",
+  "description": "A listener for websocket servers.",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scratso/Websocket-Listener.git"
+  },
+  "author": "Damian Heaton <dh64784@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Scratso/Websocket-Listener/issues"
+  },
+  "homepage": "https://github.com/Scratso/Websocket-Listener#readme",
+  "dependencies": {
+    "nodejs-websocket": "^1.7.1"
+  }
+}
