@@ -1,7 +1,5 @@
 const websocket = require('nodejs-websocket');
 const fs = require('fs');
-const request = require('request');
-var querystring = require('querystring');
 
 var conf = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
 
@@ -24,6 +22,27 @@ function start() {
 
     function connected() {
         console.log('Connected to websocket');
+
+        // Start reading from stdin so we don't exit.
+        process.stdin.resume();
+
+        if (process.platform === "win32") {
+            var rl = require("readline").createInterface({
+                input: process.stdin,
+                output: process.stdout
+            });
+
+            rl.on("SIGINT", function () {
+                process.emit("SIGINT");
+            });
+        }
+
+        process.on('SIGINT', function () {
+            wsClient.close();
+            wsClient.on('close', function (code, reason) {
+                process.exit();
+            });
+        });
     }
 }
 
